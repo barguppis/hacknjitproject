@@ -16,6 +16,12 @@ The button should be labeled something like, close program or exit, that's what 
 // this would cause the system to execute "./script.sh yeedleyeedleyeedleyee"
 
 // subdomains.sh script is fininished, add a button or a page for subdomains. Button that takes to subdomains..
-// the script should be run like this <?php system("./scripts/subdomains.sh " . USER_SUPPLIED_INPUT_AS_DOMAIN_TO_CHECK) ?>
-
-
+// the script should be run like this <?php system("bash scripts/subdomains.sh " . USER_SUPPLIED_INPUT_AS_DOMAIN_TO_CHECK) ?>
+// ask me about that usersupplied input if you don't quite understand
+// nmaplist.sh script has been created. Make a page for nmap scanning please
+// <?php system("bash scripts/nmaplist.sh " . USER_SUPPLIED_INPUT) ?>
+// I think we should do it as a post request when you click a button.
+// basically input field, click button, post request, used supplied input it put into the php command.
+// the php command would look like this after that <?php system("bash scripts/nmaplist.sh " . $_POST['input']) ?>
+// the post data would be like input=USER_SUPPLIED_DATA
+// hope this makes sense
