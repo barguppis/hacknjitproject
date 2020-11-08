@@ -47,7 +47,7 @@ echo '<p><a href="/responder/' . $_POST['dev1'] . '/' . $_POST['savedoutput'] . 
 ?>
 <?php
 if(isset($_POST['hashcat']) and $_POST['hashcat'] != ""){
-system("bash scripts/hashcat.sh " . $_POST['dev2'] . " " . $_POST['hashcat'] . " > /dev/null");
+system("bash scripts/hashcat.sh " . $_POST['dev2'] . " " . $_POST['hashcat']);
 echo '<p><a href="/responder/' . $_POST['dev2'] . '/' . $_POST['hashcat'] . ".hashout" . '">View cracked hashes</a></p>';
 }
 ?>
