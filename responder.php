@@ -18,7 +18,11 @@
 
 <?php
 system("ifconfig > scans/ifconfig.txt");
+if(isset($_POST['dev']) and $_POST['dev'] != "" and $_POST['saveoutput'] != ""){
+system("bash scripts/responder.sh" . $_POST['dev']);
+}else{
 if(isset($_POST['dev'])){
-system("bash scripts/responder.sh");
+echo "<p>You need to supply both arguments</p>";
+}
 }
 ?>
