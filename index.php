@@ -1,31 +1,46 @@
-<title>notAutoEnum Web</title>
-<h1>This is the index page</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0";>
+  <title>notAutoEnum</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <section class="page-title">notAutoEnum</section>
+  <section class="action-list">
+    <a href="/subdomains.php" class="card">
+      <div class="card-head"><i class='material-icons'>list</i></div>
+      <div class="card-body">Enumerate Subdomains with wfuzz / sublist3r</div>
+    </a>
+    <a href="/nmap.php" class="card">
+      <div class="card-head"><i class='material-icons'>search</i></div>
+      <div class="card-body">Scan Found Hosts with Nmap</div>
+    </a><a href="/eyewitness.php" class="card">
+      <div class="card-head"><i class='material-icons'>photo</i></div>
+      <div class="card-body">Pull Images from Front Page of Webpages of Found Hosts</div>
+    </a><a href="/responder.php" class="card">
+      <div class="card-head"><i class='material-icons'>security</i></div>
+      <div class="card-body">LLMNR/NBT-NS Poisoning with Automatic Password cracking</div>
+    </a>
+    <a href="/install.php" class="card">
+      <div class="card-head"><i class='material-icons'>get_app</i></div>
+      <div class="card-body">Install Necessary Dependencies</div>
+    </a>
 
-<p><a href="/subdomains.php">Enumerate subdomains with wfuzz / sublist3r</a></p>
-<p><a href="/nmap.php">Scan Found Hosts with Nmap</a></p>
-<p><a href="/eyewitness.php">Pull images from the front page of webpages of found hosts</a></p>
-<p><a href="/responder.php">LLMNR/NBT-NS Poisoning w/ Automatic Password cracking</a></p>
-<p><a href="/about.php">About Us / Credit to tools used</a></p>
-<p><a href="/install.php">Install necessary Dependencies</a></p>
-<form action="/index.php" method="post">
-	<input type="submit" name="exit" value="exit"/>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-<img src="/images/hacknjit.jpg" alt="This is a test">
-
+  </section>
+  <section class="footer">
+    <a href="/about.php" class="footer-btn">About</a>
+    <form action="/index.php" method="post" id="exit-btn" class="footer-btn">
+  	  <input type="submit" name="exit" value="Exit"/>
+    </form>
+  </section>
+</body>
 <?php
-if ($_POST['exit'] == 'exit') {
-system("kill $(ps aux | grep -i php | awk '{print $2}')");
-}
+  if(isset($_POST['domain']) and $_POST['domain'] != ""){
+  system("bash scripts/nmaplist.sh " . $_POST['domain'] . " " . $_POST['args']);
+  echo "<p>Finished!</p>";
+  echo '<a href="/scans/' . $_POST['domain'] . '/' . $_POST['domain'] . '.nmap">See Output</a>';
+  }
 ?>
