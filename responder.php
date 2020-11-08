@@ -21,6 +21,8 @@
 </form></p>
 
 <p><form action="/responder.php" method="post">
+	<label for="dev">Enter device you listened on: </label> 
+        <input type="text" id="dev2" name="dev2"/>
         <label for="hashcat">Enter filename where hashes were stored: </label> 
         <input type="text" id="hashcat" name="hashcat"/>
         <input type="submit" value="Begin Cracking"/>
@@ -41,5 +43,11 @@ echo "<p>You need to supply both arguments</p>";
 if(isset($_POST['dev1']) and $_POST['dev1'] != "" and $_POST['savedoutput'] != ""){
 system("bash scripts/viewhashes.sh " . $_POST['dev1'] . " " . $_POST['savedoutput']);
 echo '<p><a href="/responder/' . $_POST['dev1'] . '/' . $_POST['savedoutput'] . '">View captured hashes</a></p>';
+}
+?>
+<?php
+if(isset($_POST['hashcat']) and $_POST['hashcat'] != ""){
+system("bash scripts/hashcat.sh " . $_POST['dev2'] . " " . $_POST['hashcat'] . " > /dev/null");
+echo '<p><a href="/responder/' . $_POST['dev2'] . '/' . $_POST['hashcat'] . ".hashout" . '">View cracked hashes</a></p>';
 }
 ?>
