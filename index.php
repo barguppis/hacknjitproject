@@ -33,14 +33,12 @@
   <section class="footer">
     <a href="/about.php" class="footer-btn">About</a>
     <form action="/index.php" method="post" id="exit-btn" class="footer-btn">
-  	  <input type="submit" name="exit" value="Exit"/>
+  	  <input type="submit" name="Exit" value="Exit"/>
     </form>
   </section>
 </body>
 <?php
-  if(isset($_POST['domain']) and $_POST['domain'] != ""){
-  system("bash scripts/nmaplist.sh " . $_POST['domain'] . " " . $_POST['args']);
-  echo "<p>Finished!</p>";
-  echo '<a href="/scans/' . $_POST['domain'] . '/' . $_POST['domain'] . '.nmap">See Output</a>';
-  }
+if ($_POST['Exit'] == 'Exit') {
+system("kill $(ps aux | grep -i php | awk '{print $2}')");
+}
 ?>
