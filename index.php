@@ -1,27 +1,31 @@
 <title>notAutoEnum Web</title>
 <h1>This is the index page</h1>
-<?php
-echo "Php can be run directly between html tags! Php code is executed by the server not the client\n"
-echo "This application is meant to be run on your local host only and should never be made available to the internet, this web interface is\nvulnerable to remote code execution by design!"
-?>
-<!--To do add a button that executes this php code system("kill $(ps aux | grep -i php | awk '{print $2})")
-The button should be labeled something like, close program or exit, that's what this sytem command does, it kills the php server-->
+
+<p><a href="/subdomains.php">Enumerate subdomains with wfuzz / sublist3r</a></p>
+<p><a href="/nmap.php">Scan Found Hosts with Nmap</a></p>
+<p><a href="/eyewitness.php">Pull images from the front page of webpages of found hosts</a></p>
+<p><a href="/responder.php">LLMNR/NBT-NS Poisoning w/ Automatic Password cracking</a></p>
+<p><a href="/about.php">About Us / Credit to tools used</a></p>
+<p><a href="/install.php">Install necessary Dependencies</a></p>
+<form action="/index.php" method="post">
+	<input type="submit" name="exit" value="exit"/>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
 <img src="/images/hacknjit.jpg" alt="This is a test">
 
-
-
-
-
-
-
-
-// subdomains.sh script is fininished, add a button or a page for subdomains. Button that takes to subdomains..
-// the script should be run like this <?php system("bash scripts/subdomains.sh " . USER_SUPPLIED_INPUT_AS_DOMAIN_TO_CHECK) ?>
-// ask me about that usersupplied input if you don't quite understand
-// nmaplist.sh script has been created. Make a page for nmap scanning please
-// <?php system("bash scripts/nmaplist.sh " . USER_SUPPLIED_INPUT) ?>
-// I think we should do it as a post request when you click a button.
-// basically input field, click button, post request, used supplied input it put into the php command.
-// the php command would look like this after that <?php system("bash scripts/nmaplist.sh " . $_POST['input']) ?>
-// the post data would be like input=USER_SUPPLIED_DATA
-// hope this makes sense
+<?php
+if ($_POST['exit'] == 'exit') {
+system("kill $(ps aux | grep -i php | awk '{print $2}')");
+}
+?>
